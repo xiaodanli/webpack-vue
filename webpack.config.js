@@ -30,6 +30,24 @@ module.exports = {
                     fallback:'style-loader',
                     use:['css-loader','sass-loader']
                 })
+            },
+            {
+                test:/\.(png|jpe?g|svg|gif)$/,
+                use:{
+                    loader:'url-loader',
+                    options:{
+                        limit:8000
+                    }
+                }
+            },
+            {
+                test:/\.html$/,
+                use:{
+                    loader:'html-loader',
+                    options:{
+                        attrs:["img:src"]
+                    }
+                }
             }
         ]
     },
