@@ -32,7 +32,7 @@ module.exports = {
                 })
             },
             {
-                test:/\.(png|jpe?g|svg|gif)$/,
+                test:/\.(png|jpe?g|svg|gif|ttf)$/,
                 use:{
                     loader:'url-loader',
                     options:{
@@ -45,7 +45,7 @@ module.exports = {
                 use:{
                     loader:'html-loader',
                     options:{
-                        attrs:["img:src"]
+                        attrs:['img:src']
                     }
                 }
             }

@@ -1,4 +1,4 @@
-import name from './util';
+import name from './js/util';
 
 console.log(name);
 
@@ -8,4 +8,5 @@ let sum = function(a,b){
 
 console.log(sum(1,2));
 
-import './index.scss';
+import './scss/index.scss';
+import './scss/mui.scss';
