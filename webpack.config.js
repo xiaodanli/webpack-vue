@@ -1,10 +1,10 @@
 var path = require('path');
 
+var htmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry:{
-        index:'./src/index',
-        detail:'./src/detail',
-        my:'./src/my'
+        index:'./src/index'
     },
     mode:'development',
     output:{
@@ -23,7 +23,14 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins:[
+        new htmlWebpackPlugin({
+            template:'./src/index.html',
+            inject:true,
+            filename:'test.html'
+        })
+    ]
 }
 
 //单入口 ---> 单出口
