@@ -4,6 +4,8 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 const extractTextPlugin = require('extract-text-webpack-plugin');
 
+const webpack = require('webpack');
+
 module.exports = {
     entry:{
         index:'./src/index'
@@ -59,8 +61,22 @@ module.exports = {
         }),
         new extractTextPlugin({
             filename:"[name].css"
-        })
-    ]
+        }),
+        // new webpack.HotModuleReplacementPlugin()  //模块热更新
+    ],
+    devServer:{
+        contentBase:path.join(__dirname,'dist'),
+        port:9090,
+        before(app){
+            app.get('/api/list',(req,res,next) => {
+                res.json({code:1,data:'data'})
+            })
+        },
+        proxy:{  //设置代理
+            '/api':'http://loadlhost:3000'
+        },
+        hot:false
+    }
 }
 
 //单入口 ---> 单出口
