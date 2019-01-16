@@ -1,6 +1,8 @@
-var path = require('path');
+const path = require('path');
 
-var htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+
+const extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry:{
@@ -21,6 +23,13 @@ module.exports = {
                         presets:['@babel/preset-env']
                     }
                 }
+            },
+            {
+                test:/\.scss$/,
+                use:extractTextPlugin.extract({
+                    fallback:'style-loader',
+                    use:['css-loader','sass-loader']
+                })
             }
         ]
     },
@@ -29,6 +38,9 @@ module.exports = {
             template:'./src/index.html',
             inject:'head',
             filename:'index.html'
+        }),
+        new extractTextPlugin({
+            filename:"[name].css"
         })
     ]
 }
